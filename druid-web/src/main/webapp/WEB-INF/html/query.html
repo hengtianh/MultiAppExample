@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>详细信息</h2><button id="query" onclick="queryItem()">查询</button>
+<div id="app">
+    <table>
+        <tr>
+            <td>title</td><td>image</td><td>price</td><td>num</td>
+        </tr>
+        <tr>
+            <td>{{title}}</td><td>{{image}}</td><td>{{price}}</td><td>{{num}}</td>
+        </tr>
+    </table>
+    <p id="title"></p>
+    <img id="img" src="" alt="商品图片"/>
+    <p id="price"></p>
+    <p id="num"></p>
+</div>
+
+<script src="http://localhost:8080/js/http_api.js"></script>
+<script type="text/javascript">
+
+    function queryItem() {
+
+        var param = {
+            method:'GET',
+            url:'http://localhost:8080/api/item/536563',
+            dataType:'JSON'
+        };
+        execute(param, function (data) {
+            var title = getElementById('title');
+            title.innerText = data.title;
+            getElementById('price').innerText = data.price;
+            getElementById('num').innerText = data.num;
+            getElementById('img').src = data.image;
+        })
+    };
+
+
+</script>
+</body>
+</html>
